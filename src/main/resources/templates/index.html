@@ -1,8 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-
 <head th:replace="partials/partials.html :: head('Pokedex')"></head>
-<body>
+<body id="indexBody">
+<div id="loader">
+    <h1 class="text-center my-4 text-light"><span id="loaderCatching" class="text-danger">Catching</span>
+        <br><span class="text-dark">your</span><br>
+        <span id="loaderPokemon">Pokemon</span></h1>
+</div>
+<div id="content" ></div>
 
+<div id="modal-container" class="hidden">
+    <div id="modal" class="modal hidden">
+        <!-- going to place all modal stuff here-->
+        <header>
+            <h3>Enter Changes</h3>
+        </header>
+        <main></main>
+        <footer> <button>Accept!</button> </footer>
+    </div>
+</div>
+<block th:replace="partials/partials.html :: scripts"></block>
+<script type="module" src="/js/main.js"></script>
 </body>
 </html>
