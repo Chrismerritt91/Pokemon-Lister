@@ -2,3 +2,13 @@
     background: #0B3655;
 }
 
+.hidden{
+    display: none;
+}
+
+#card{
+    height: 13.5em;
+    width: 10em;
+    margin-right: 5em;
+    margin-bottom: 3em;
+}
