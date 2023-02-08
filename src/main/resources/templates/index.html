@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="partials/partials.html :: head('Pokedex')"></head>
-<body id="indexBody">
+<body id="indexBody" class="text-center">
+<nav th:replace="partials/partials.html :: nav"></nav>
 
 <div id="loader">
     <h1 class="text-center my-4 text-light">
@@ -13,7 +14,19 @@
     </h1>
 </div>
 
-<div class="container d-flex flex-wrap justify-content-around" id="content"></div>
+<div class="py-0 px-2 btn-group mt-4 rounded-pill" style="background-color: silver">
+    <button type="button" class="btn">Kanto</button>
+    <button type="button" class="btn">Johto</button>
+    <button type="button" class="btn">Hoenn</button>
+    <button type="button" class="btn">Sinnoh</button>
+    <button type="button" class="btn">Unova</button>
+    <button type="button" class="btn">Kalos</button>
+    <button type="button" class="btn">Alola</button>
+    <button type="button" class="btn">Galar</button>
+    <button type="button" class="btn">Paldea</button>
+</div>
+
+<div class="container mt-4 d-flex flex-wrap justify-content-around" id="content"></div>
 
 <div id="modal-container" class="hidden">
     <div id="modal" class="modal hidden">
