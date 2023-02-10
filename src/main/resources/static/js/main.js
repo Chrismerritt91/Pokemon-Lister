@@ -1,8 +1,16 @@
 import {POKE_APP_API} from "./keys.js";
 
 // /?limit=1279 append this to the end of query for all pokemon, too much for page initial limit is ?offset=20&limit=20
-let pokeQuery = "pokemon"
-let pokeQueryAll = "pokemon/?limit=1279"
+const pokeQuery = "pokemon"
+const kanto = "/?limit=151"
+const johto = "/?offset=151&limit=100";
+const hoenn = "/?offset=251&limit=135";
+const sinnoh = "/?offset=386&limit=108";
+const unova = "/?offset=494&limit=155";
+const kalos = "/?offset=649&limit=72";
+const alola = "/?offset=721&limit=88";
+const galar = "/?offset=809&limit=96";
+const paldea = "/?offset=905&limit=103";
 
 const createPokemonCard = ({name, id, sprites, types}) => {
     document.getElementById("content").innerHTML +=
@@ -108,8 +116,8 @@ const createPokemonCard = ({name, id, sprites, types}) => {
 }
 // <input type="hidden" value="${past_types[0].generation.names}"> trying to get this to work to identify the pokemon's generation, so I can sort by gen
 
-export const runPokeApp = () => {
-    fetch(POKE_APP_API + pokeQuery)
+export const runPokeApp = (limit) => {
+    fetch(POKE_APP_API + pokeQuery + limit)
         .then((res) => res.json())
         // .then((res) => console.log(res))
         .then($("#loader").addClass("hidden"))
@@ -131,6 +139,53 @@ const getPokemon = name => {
         .then((res) => res.json())
 }
 
-runPokeApp()
+// this function is to sort the pokemon by regions
+$(".regionBtn").click(function(){
+    let region = $(this).val()
+    $(".introduction").addClass("hidden")
+    switch (region){
+        case "kanto":{
+            runPokeApp(kanto)
+            break;
+        }
+        case "johto":{
+            runPokeApp(johto)
+            break;
+        }
+        case "hoenn":{
+            runPokeApp(hoenn)
+            break;
+        }
+        case "sinnoh":{
+            runPokeApp(sinnoh)
+            break;
+        }
+        case "unova":{
+            runPokeApp(unova)
+            break;
+        }
+        case "kalos":{
+            runPokeApp(kalos)
+            break;
+        }
+        case "alola":{
+            runPokeApp(alola)
+            break;
+        }
+        case "galar":{
+            runPokeApp(galar)
+            break;
+        }
+        case "paldea":{
+            runPokeApp(paldea)
+            break;
+        }
+        default:{
+            $(".introduction").removeClass("hidden")
+            break;
+        }
+    }
+})
+
 
 
