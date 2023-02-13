@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials/partials.html :: head(pokemon)"></head>
+<body>
+<nav th:replace="partials/partials.html :: nav"></nav>
+
+<main>
+
+<div id="detailBody" class="container"></div>
+
+</main>
+
+<block th:replace="partials/partials.html :: scripts"></block>
+<script src="/js/details.js" type="module"></script>
+<script>
+    console.log(window.location.href);
+</script>
+</body>
+</html>

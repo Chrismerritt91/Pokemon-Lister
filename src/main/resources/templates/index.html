@@ -4,17 +4,8 @@
 <body id="indexBody" class="text-center">
 <nav th:replace="partials/partials.html :: nav"></nav>
 
-<div id="loader">
-    <h1 class="text-center my-4 text-light">
-        <span id="loaderCatching" class="text-danger">Catching</span>
-        <br>
-        <span class="text-dark">your</span>
-        <br>
-        <span id="loaderPokemon">Pokemon</span>
-    </h1>
-</div>
-
-<div class="py-0 px-2 btn-group mt-4 rounded-pill border border-2 border-dark border-opacity-50">
+<!--This button group supports the function of filtering pokemon by the region that the user selects-->
+<div id="regionSelect" class="py-0 px-2 btn-group mt-4 rounded-pill border border-2 border-dark border-opacity-50">
     <button type="button" class="regionBtn btn" value="kanto">Kanto</button>
     <button type="button" class="regionBtn btn" value="johto">Johto</button>
     <button type="button" class="regionBtn btn" value="hoenn">Hoenn</button>
@@ -25,6 +16,7 @@
     <button type="button" class="regionBtn btn" value="galar">Galar</button>
     <button type="button" class="regionBtn btn" value="paldea">Paldea</button>
 </div>
+
 <div class="introduction">
     <h1 class="text-center text-primary">This is only visible before you run the fetch request</h1>
 </div>
@@ -32,5 +24,11 @@
 
 <block th:replace="partials/partials.html :: scripts"></block>
 <script src="/js/main.js" type="module"></script>
+<script>
+    $("#card").click(function(){
+        let id = $(this).attr("data-id")
+        window.location.assign("http://localhost:8080/details/?id=" + id + "")
+    })
+</script>
 </body>
 </html>

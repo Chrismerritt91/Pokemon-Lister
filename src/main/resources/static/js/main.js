@@ -108,19 +108,11 @@ const createPokemonCard = ({name, id, sprites, types}) => {
 
         })
 
-    // $(".card").each(function(index,element){
-    //     if($(element).attr("data-id") > 151){
-    //     }
-    // })
-
 }
-// <input type="hidden" value="${past_types[0].generation.names}"> trying to get this to work to identify the pokemon's generation, so I can sort by gen
 
 export const runPokeApp = (limit) => {
     fetch(POKE_APP_API + pokeQuery + limit)
         .then((res) => res.json())
-        // .then((res) => console.log(res))
-        .then($("#loader").addClass("hidden"))
         .then((res) => {
             $("#content").html("")
             console.log(res)
