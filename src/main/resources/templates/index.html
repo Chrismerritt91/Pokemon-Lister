@@ -24,11 +24,6 @@
 
 <block th:replace="partials/partials.html :: scripts"></block>
 <script src="/js/main.js" type="module"></script>
-<script>
-    $("#card").click(function(){
-        let id = $(this).attr("data-id")
-        window.location.assign("http://localhost:8080/details/?id=" + id + "")
-    })
-</script>
+
 </body>
 </html>

@@ -16,10 +16,14 @@ const createPokemonCard = ({name, id, sprites, types}) => {
     document.getElementById("content").innerHTML +=
         `
         <div data-id="${id}" id="card" class="text-center card border border-0 container">
-        <img class="card-img-top" src="${sprites.front_default}" alt="Poke image">
+        <img id="pokeImage" class="card-img-top" src="${sprites.front_default}" alt="Poke image">
         <div class="lower-card rounded-1 pt-2">
         <h4 class="name">${name}</h4>
+        <div class="d-flex justify-content-around align-items-baseline">
+        <a class="btn btn-outline-dark border-0" href="http://localhost:8080/details/?id=4"><i class="fa-regular fa-scroll"></i></a>
         <h6 class="pokeNum">NO. ${id}</h6>
+        <a class="btn btn-outline-dark border-0" href=""><i class="fa-regular fa-star"></i></a>
+        </div>
         <p class="type hidden">${types[0].type.name}</p>
         </div>
         </div>
@@ -108,6 +112,8 @@ const createPokemonCard = ({name, id, sprites, types}) => {
 
         })
 
+    // <i className = "fa-solid fa-star" >< /i>
+
 }
 
 export const runPokeApp = (limit) => {
@@ -115,7 +121,6 @@ export const runPokeApp = (limit) => {
         .then((res) => res.json())
         .then((res) => {
             $("#content").html("")
-            console.log(res)
             res.results.forEach((pokemon) => {
                 if(typeof pokemon.name === 'string' && pokemon.name !== ''){
                     getPokemon(pokemon.name).then((res) => {
@@ -130,6 +135,7 @@ const getPokemon = name => {
     return fetch(POKE_APP_API + pokeQuery + "/" + name, {method: "GET"})
         .then((res) => res.json())
 }
+
 
 // this function is to sort the pokemon by regions
 $(".regionBtn").click(function(){
@@ -178,6 +184,7 @@ $(".regionBtn").click(function(){
         }
     }
 })
+
 
 
 

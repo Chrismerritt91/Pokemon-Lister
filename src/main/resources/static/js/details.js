@@ -1,12 +1,15 @@
 import {POKE_APP_API} from "./keys";
 
-const pokemon = 4;
 const species = "pokemon-species"
+
+// let queryString = window.location.href
+// let pokemon = queryString.charAt(queryString.length-1)
+// console.log(queryString)
 
 const showDetails = (name, id, sprites) => {
     document.getElementById("detailBody").innerHTML +=
         `
-        <div>
+        <div data-id="${id}">
         <h3>${name} no.<span>${id}</span></h3>
         <img src="${sprites.front_default}" alt="pokeImage">
         </div>
@@ -14,14 +17,15 @@ const showDetails = (name, id, sprites) => {
 
 }
 
-export const pokeDetails = (pokemon) => {
-    fetch(POKE_APP_API + "pokemon/" + pokemon + "/")
-        .then((res) => res.json)
+export const pokeDetails = () => {
+    fetch(POKE_APP_API + "pokemon/4", {method: "GET"})
+        .then((res) => res.json())
         .then((res) => {
-            if (typeof res.name === 'string' && res.name !== '') {
+            $("#detailBody").html("")
+            if(typeof res.name === 'string' && res.name !== '') {
                 showDetails(res);
             }
         })
 }
 
-pokeDetails(4)
+pokeDetails()
