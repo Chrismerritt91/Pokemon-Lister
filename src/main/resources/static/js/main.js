@@ -15,19 +15,20 @@ const paldea = "/?offset=905&limit=103";
 const createPokemonCard = ({name, id, sprites, types}) => {
     document.getElementById("content").innerHTML +=
         `
-        <div data-id="${id}" id="card" class="text-center card border border-0 container">
+        <div data-id="${id}" id="card" class="pokeCard text-center card border border-0 container">
         <img id="pokeImage" class="card-img-top" src="${sprites.front_default}" alt="Poke image">
         <div class="lower-card rounded-1 pt-2">
         <h4 class="name">${name}</h4>
         <div class="d-flex justify-content-around align-items-baseline">
-        <a class="btn btn-outline-dark border-0" href="http://localhost:8080/details/?id=4"><i class="fa-regular fa-scroll"></i></a>
+        <a id="details" class="details btn btn-outline-dark border-0"><i class="fa-regular fa-scroll"></i></a>
         <h6 class="pokeNum">NO. ${id}</h6>
-        <a class="btn btn-outline-dark border-0" href=""><i class="fa-regular fa-star"></i></a>
+        <a class="btn btn-outline-dark border-0"><i class="fa-regular fa-star"></i></a>
         </div>
         <p class="type hidden">${types[0].type.name}</p>
         </div>
         </div>
         `
+
     // changes color according to pokemon type
     $(".type").each(function(index,element){
         let type = $(element).text()
@@ -112,6 +113,14 @@ const createPokemonCard = ({name, id, sprites, types}) => {
 
         })
 
+    // sets the url value for redirect to details page
+    $(".details").each(function(index,element){
+            let url = new URL("http://localhost:8080/details/?id=")
+            let id = $(element).parent().parent().parent().attr("data-id")
+            let newUrl = url + id
+            $(element).attr("url",newUrl)
+    })
+
     // <i className = "fa-solid fa-star" >< /i>
 
 }
@@ -185,6 +194,9 @@ $(".regionBtn").click(function(){
     }
 })
 
+$("#details").click(function() {
+    console.log("hi")
+})
 
 
 
