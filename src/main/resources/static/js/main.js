@@ -20,7 +20,7 @@ const createPokemonCard = ({name, id, sprites, types}) => {
         <div class="lower-card rounded-1 pt-2">
         <h4 class="name">${name}</h4>
         <div class="d-flex justify-content-around align-items-baseline">
-        <a id="details" class="details btn btn-outline-dark border-0"><i class="fa-regular fa-scroll"></i></a>
+        <a id="details" class="details btn btn-outline-dark border-0" url="http://localhost:8080/details/?id=1"><i class="fa-regular fa-scroll"></i></a>
         <h6 class="pokeNum">NO. ${id}</h6>
         <a class="btn btn-outline-dark border-0"><i class="fa-regular fa-star"></i></a>
         </div>
@@ -118,8 +118,12 @@ const createPokemonCard = ({name, id, sprites, types}) => {
             let url = new URL("http://localhost:8080/details/?id=")
             let id = $(element).parent().parent().parent().attr("data-id")
             let newUrl = url + id
-            $(element).attr("url",newUrl)
+            // $(element).attr("url",newUrl)
+        $(this).click(function(){
+            window.location = newUrl;
+        })
     })
+
 
     // <i className = "fa-solid fa-star" >< /i>
 

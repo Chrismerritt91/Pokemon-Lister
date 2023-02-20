@@ -2,10 +2,14 @@ import {POKE_APP_API} from "./keys.js";
 
 const species = "pokemon-species"
 
+// targets the url parameters and gets the id number for the fetch request
 let queryString = window.location.href
-let pokemon = queryString.charAt(queryString.length-1)
-console.log(queryString)
+let url = new URL(queryString)
+let parameters = url.searchParams
+let pokemon = parameters.get("id")
 
+
+// builds the page to show details of selected pokemon
 const showDetails = (res) => {
     document.getElementById("detailBody").innerHTML +=
         `
@@ -16,6 +20,8 @@ const showDetails = (res) => {
         `
 }
 
+
+// fetch request for details page
 export const pokeDetails = () => {
     fetch(POKE_APP_API + "pokemon/" + pokemon)
         .then((res) => res.json())
