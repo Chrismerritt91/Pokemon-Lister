@@ -29,6 +29,13 @@ const createPokemonCard = ({name, id, sprites, types}) => {
         </div>
         `
 
+    // capitalize the first letter of the name
+    $(".name").each(function(index,element){
+        let name = $(element).text()
+        let newString = name.charAt(0).toUpperCase() + name.slice(1)
+        $(this).text(newString)
+    })
+
     // changes color according to pokemon type
     $(".type").each(function(index,element){
         let type = $(element).text()
@@ -123,6 +130,8 @@ const createPokemonCard = ({name, id, sprites, types}) => {
             window.location = newUrl;
         })
     })
+
+
 
 
     // <i className = "fa-solid fa-star" >< /i>

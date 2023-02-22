@@ -23,4 +23,28 @@
     background: silver;
 }
 
+#details{
+    background: #393839;
+    color: ghostwhite;
+    font-family: Georgia, serif;
+}
 
+.title{
+    background-color: darkorange;
+
+}
+
+.section{
+    background-color: #404141;
+}
+
+.detailImg{
+    background-color: #454445;
+    padding: 3px;
+    height: 200px;
+    width: 200px;
+}
+
+.stat{
+    height: 30px;
+}
