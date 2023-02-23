@@ -24,11 +24,11 @@ const showDetails = (res) => {
                 </div>
                 <div class="height m-1 w-25">
                     <h4 class="title border rounded border-dark text-center">Height</h4>
-                    <div class="section stat border rounded border-dark p-1">${res.height}m</div>
+                    <div id="height" class="section stat border rounded border-dark p-1">${res.height}</div>
                 </div>
                 <div class="weight m-1 w-25">
                     <h4 class="title border rounded border-dark text-center">Weight</h4>
-                    <div class="section stat border rounded border-dark p-1">${res.weight}Kg</div>
+                    <div id="weight" class="section stat border rounded border-dark p-1">${res.weight}</div>
                 </div>
                 <div class="types m-1 w-25">
                     <h4 class="title border rounded border-dark text-center">Type</h4>
@@ -38,8 +38,8 @@ const showDetails = (res) => {
             <div class="pictures text-center" >
                 <h4 class="title border rounded border-dark my-1">Pictures</h4>
                 <div class="section my-2 border rounded border-dark">
-                    <img class="detailImg border rounded border-1 border-dark m-1" src="${res.sprites.front_default}" alt="poke Image">
-                    <img class="detailImg border rounded border-1 border-dark m-1" src="${res.sprites.front_shiny}" alt="shiny Image">
+                    <img class="detailImg border rounded border-1 border-dark m-1" src="${res.sprites.front_default}" alt="No Image Available">
+                    <img class="detailImg border rounded border-1 border-dark m-1" src="${res.sprites.front_shiny}" alt="No Image Available">
                 </div>
             </div>
         </div>
@@ -50,6 +50,24 @@ const showDetails = (res) => {
         let name = $(element).text()
         let newString = name.charAt(0).toUpperCase() + name.slice(1)
         $(this).text(newString)
+    })
+
+    $(function heightConversion(){
+        let height = $("#height").text() + "0"
+        let meters = parseFloat(height)/100
+        let inches = meters/0.0254
+        let feet = parseInt(inches/12)
+        let remainingInches = Math.round(inches - (12*feet))
+        let feetAndInches = feet + "'" + " " + remainingInches + '"'
+
+        $("#height").html(feetAndInches + `</br>` + meters + ' m')
+    })
+
+    $(function weightConversion(){
+        let grams = $("#weight").text() + "00"
+        let kg = parseInt(grams)/1000
+        let lbs = (grams/453.59237).toFixed(1)
+        $("#weight").html(lbs + " lbs" + `</br>` + kg + " Kg")
     })
 
 }
