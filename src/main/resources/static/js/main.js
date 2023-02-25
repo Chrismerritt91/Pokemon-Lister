@@ -131,9 +131,6 @@ const createPokemonCard = ({name, id, sprites, types}) => {
         })
     })
 
-
-
-
     // <i className = "fa-solid fa-star" >< /i>
 
 }

@@ -1,6 +1,6 @@
 import {POKE_APP_API} from "./keys.js";
 
-const species = "pokemon-species"
+const species = "pokemon-species/"
 
 // targets the url parameters and gets the id number for the fetch request
 let queryString = window.location.href
@@ -20,7 +20,7 @@ const showDetails = (res) => {
             <div class="stats d-flex">
                 <div class="classification m-1 w-25">
                     <h4 class="title border rounded border-dark text-center">Classification</h4>
-                    <div class="section stat border rounded border-dark p-1"></div>
+                    <div id="classification" class="section stat border rounded border-dark p-1"></div>
                 </div>
                 <div class="height m-1 w-25">
                     <h4 class="title border rounded border-dark text-center">Height</h4>
@@ -32,7 +32,7 @@ const showDetails = (res) => {
                 </div>
                 <div class="types m-1 w-25">
                     <h4 class="title border rounded border-dark text-center">Type</h4>
-                    <div class="section stat border rounded border-dark p-1"></div>
+                    <div id="types" class="section stat border rounded border-dark p-1 ">${res.types[0].type.name}</div>
                 </div>
             </div>
             <div class="pictures text-center" >
@@ -70,6 +70,14 @@ const showDetails = (res) => {
         $("#weight").html(lbs + " lbs" + `</br>` + kg + " Kg")
     })
 
+    $(function showTypes(){
+        try {
+            $("#types").html(`${res.types[0].type.name}` + '/' + `${res.types[1].type.name}`)
+        }catch(Exception){}
+
+
+    })
+
 }
 
 
@@ -82,8 +90,18 @@ export const pokeDetails = () => {
             $("#detailBody").html("")
             if (typeof res.name === 'string' && res.name !== '') {
                 showDetails(res)
+                // speciesInfo(pokemon)
             }
         })
 }
+
+// export const speciesInfo = (id) => {
+//     fetch(POKE_APP_API + species + id)
+//         .then((res) => res.json())
+//         .then((res) => {
+//             console.log(res)
+//             showDetails(res)
+//         })
+// }
 
 pokeDetails()
