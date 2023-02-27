@@ -9,18 +9,18 @@ let parameters = url.searchParams
 let pokemon = parameters.get("id")
 
 
-// builds the page to show details of selected pokemon
+// builds the page to show details of selected pokemons Name, Height, Weight, Types, and Images
 const showDetails = (res) => {
     document.getElementById("detailBody").innerHTML +=
         `
         <div data-id="${res.id}">
             <div>
-                <h1>#${res.id} <span id="detailsName">${res.name}</span></h1>
+                <h1 id="detailsName" class="ps-1">${res.name}</h1>
             </div>
             <div class="stats d-flex">
-                <div class="classification m-1 w-25">
-                    <h4 class="title border rounded border-dark text-center">Classification</h4>
-                    <div id="classification" class="section stat border rounded border-dark p-1"></div>
+                <div class="number m-1 w-25">
+                    <h4 class="title border rounded border-dark text-center">No.</h4>
+                    <div id="number" class="section stat border rounded border-dark p-1 pt-3">National: #${res.id}</div>
                 </div>
                 <div class="height m-1 w-25">
                     <h4 class="title border rounded border-dark text-center">Height</h4>
@@ -32,12 +32,12 @@ const showDetails = (res) => {
                 </div>
                 <div class="types m-1 w-25">
                     <h4 class="title border rounded border-dark text-center">Type</h4>
-                    <div id="types" class="section stat border rounded border-dark p-1 ">${res.types[0].type.name}</div>
+                    <div id="types" class="section stat border rounded border-dark p-1 text-center pt-3 ">${res.types[0].type.name}</div>
                 </div>
             </div>
             <div class="pictures text-center" >
-                <h4 class="title border rounded border-dark my-1">Pictures</h4>
-                <div class="section my-2 border rounded border-dark">
+                <h4 class="title border rounded border-dark m-1">Pictures</h4>
+                <div class="section my-2 border rounded border-dark mx-1">
                     <img class="detailImg border rounded border-1 border-dark m-1" src="${res.sprites.front_default}" alt="No Image Available">
                     <img class="detailImg border rounded border-1 border-dark m-1" src="${res.sprites.front_shiny}" alt="No Image Available">
                 </div>
@@ -52,34 +52,68 @@ const showDetails = (res) => {
         $(this).text(newString)
     })
 
-    $(function heightConversion(){
+    $(function heightConversion() {
         let height = $("#height").text() + "0"
-        let meters = parseFloat(height)/100
-        let inches = meters/0.0254
-        let feet = parseInt(inches/12)
-        let remainingInches = Math.round(inches - (12*feet))
+        let meters = parseFloat(height) / 100
+        let inches = meters / 0.0254
+        let feet = parseInt(inches / 12)
+        let remainingInches = Math.round(inches - (12 * feet))
         let feetAndInches = feet + "'" + " " + remainingInches + '"'
 
         $("#height").html(feetAndInches + `</br>` + meters + ' m')
     })
 
-    $(function weightConversion(){
+    $(function weightConversion() {
         let grams = $("#weight").text() + "00"
-        let kg = parseInt(grams)/1000
-        let lbs = (grams/453.59237).toFixed(1)
+        let kg = parseInt(grams) / 1000
+        let lbs = (grams / 453.59237).toFixed(1)
         $("#weight").html(lbs + " lbs" + `</br>` + kg + " Kg")
     })
 
-    $(function showTypes(){
+    $(function showTypes() {
         try {
             $("#types").html(`${res.types[0].type.name}` + '/' + `${res.types[1].type.name}`)
-        }catch(Exception){}
+        } catch (Exception) {
+        }
 
 
     })
 
 }
 
+const speciesDetails = (res) => {
+    document.getElementById("speciesDetails").innerHTML +=
+        `<div>
+            <div class="stats d-flex">
+                <div class="m-1 w-25">
+                <h4 class="title border rounded border-dark text-center">Classification</h4>
+                <div class="section stat border rounded border-dark p-1 pt-3">${res.genera[7].genus}</div>
+                </div>
+                <div class="m-1 w-25">
+                <h4 class="title border rounded border-dark text-center">Capture Rate</h4>
+                <div class="section stat border rounded border-dark p-1 pt-3">${res.capture_rate}</div>
+                </div>
+                <div class="m-1 w-25">
+                <h4 class="title border rounded border-dark text-center">Base Happiness</h4>
+                <div class="section stat border rounded border-dark p-1 pt-3">${res.base_happiness}</div>
+                </div>
+                <div class="m-1 w-25">
+                <h4 class="title border rounded border-dark text-center">Habitat</h4>
+                <div id="habitat" class="section stat border rounded border-dark p-1 pt-3">Unknown</div>
+                </div>
+            </div>
+        </div>
+        `
+
+        $(function habitatCatch(){
+            try {
+                $("#habitat").html(`${res.habitat.name}`)
+            }catch (Exception) {
+            }
+        })
+
+
+}
 
 // fetch request for details page
 export const pokeDetails = () => {
@@ -90,18 +124,19 @@ export const pokeDetails = () => {
             $("#detailBody").html("")
             if (typeof res.name === 'string' && res.name !== '') {
                 showDetails(res)
-                // speciesInfo(pokemon)
             }
         })
 }
 
-// export const speciesInfo = (id) => {
-//     fetch(POKE_APP_API + species + id)
-//         .then((res) => res.json())
-//         .then((res) => {
-//             console.log(res)
-//             showDetails(res)
-//         })
-// }
+export const speciesInfo = () => {
+    fetch(POKE_APP_API + species + pokemon)
+        .then((res) => res.json())
+        .then((res) => {
+            console.log(res)
+            $("#speciesDetails").html("")
+            speciesDetails(res)
+        })
+}
 
 pokeDetails()
+speciesInfo()
