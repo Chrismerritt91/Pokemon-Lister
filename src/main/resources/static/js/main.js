@@ -15,7 +15,7 @@ const paldea = "/?offset=905&limit=103";
 const createPokemonCard = ({name, id, sprites, types}) => {
     document.getElementById("content").innerHTML +=
         `
-        <div data-id="${id}" id="card" class="pokeCard text-center card border border-0 container">
+        <div data-id="${id}" id="card" class="section pokeCard text-center card border border-0 container">
         <img id="pokeImage" class="card-img-top" src="${sprites.front_default}" alt="Poke image">
         <div class="lower-card rounded-1 pt-2">
         <h4 class="name">${name}</h4>

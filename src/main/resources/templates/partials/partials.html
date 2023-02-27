@@ -19,16 +19,14 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item ">
-                    <a class="nav-link disabled" href="/index">Pokemon</a>
+                    <a class="nav-link disabled" href="/index">Favorites</a>
                 </li>
-                <li>
-                    <form action="">
-
-                    </form>
-                </li>
-
             </ul>
         </div>
+        <form id="searchForm" action="" method="get">
+            <input type="text" id="search" placeholder="Enter Pokemon">
+            <button type="submit" id="searchBtn">Search</button>
+        </form>
 
     </div><!-- /.container-fluid -->
 </nav>
@@ -46,6 +44,13 @@
             integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
             crossorigin="anonymous"></script>
     <script src="/js/jquery-3.6.0.js"></script>
+    <script>
+        $("#searchBtn").click(function(){
+            let input = $("#search").val()
+            $("#searchForm").attr("action", "/details/?id=" + input)
+        })
+
+    </script>
 </th:block>
 
 </html>

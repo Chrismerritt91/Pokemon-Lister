@@ -87,7 +87,7 @@ const speciesDetails = (res) => {
             <div class="stats d-flex">
                 <div class="m-1 w-25">
                 <h4 class="title border rounded border-dark text-center">Classification</h4>
-                <div class="section stat border rounded border-dark p-1 pt-3">${res.genera[7].genus}</div>
+                <div id="classification" class="section stat border rounded border-dark p-1 pt-3">Not Yet Classified</div>
                 </div>
                 <div class="m-1 w-25">
                 <h4 class="title border rounded border-dark text-center">Capture Rate</h4>
@@ -102,16 +102,42 @@ const speciesDetails = (res) => {
                 <div id="habitat" class="section stat border rounded border-dark p-1 pt-3">Unknown</div>
                 </div>
             </div>
+            <div class="text-center" >
+                <h4 class="title border rounded border-dark m-1">Flavor Text</h4>
+                <div class="section my-2 border rounded border-dark mx-1">
+                    <p id="flavorText">This Pokemon is still quite the mystery</p>
+                </div>
+            </div>
         </div>
         `
 
-        $(function habitatCatch(){
+        $(function tryHabitat(){
             try {
                 $("#habitat").html(`${res.habitat.name}`)
             }catch (Exception) {
             }
         })
 
+        $(function tryGenus(){
+        try {
+            $("#classification").html(`${res.genera[7].genus}`)
+        }catch (Exception){
+
+        }
+    })
+
+        $(function tryFlavor(){
+            try {
+                for(let i = 0; i < `${res.flavor_text_entries}`.length; i++){
+                    if(`${res.flavor_text_entries[i].language.name}` === "en"){
+                        $("#flavorText").html(`${res.flavor_text_entries[i].flavor_text}`)
+                        break;
+                    }
+                }
+            }catch (Exception){
+            }
+
+        })
 
 }
 
