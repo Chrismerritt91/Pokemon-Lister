@@ -15,14 +15,16 @@ const paldea = "/?offset=905&limit=103";
 const createPokemonCard = ({name, id, sprites, types}) => {
     document.getElementById("content").innerHTML +=
         `
-        <div data-id="${id}" id="card" class="section pokeCard text-center card border border-0 container">
+        <div data-id="${id}" id="card" class="section pokeCard text-center card border border-0 container p-0">
         <img id="pokeImage" class="card-img-top" src="${sprites.front_default}" alt="Poke image">
         <div class="lower-card rounded-1 pt-2">
         <h4 class="name">${name}</h4>
         <div class="d-flex justify-content-around align-items-baseline">
-        <a id="details" class="details btn btn-outline-dark border-0" url="http://localhost:8080/details/?id=1"><i class="fa-regular fa-scroll"></i></a>
+        <a id="toDetails" class="details border-0" url="http://localhost:8080/details/?id=1"><i class="fa-solid fa-scroll"></i></a>
         <h6 class="pokeNum">NO. ${id}</h6>
-        <a class="btn btn-outline-dark border-0"><i class="fa-regular fa-star"></i></a>
+        <a class="favBtn border-0">
+            <i class="fa-regular fa-star"></i>
+        </a>
         </div>
         <p class="type hidden">${types[0].type.name}</p>
         </div>
@@ -131,6 +133,19 @@ const createPokemonCard = ({name, id, sprites, types}) => {
         })
     })
 
+    $(".favBtn").click(function(){
+        let status = $(this).children().attr("class")
+        let name =
+        console.log(name)
+        if(status === "fa-regular fa-star"){
+            localStorage.setItem(`${name}`, `${id}`)
+            $(this).children().attr("class", "fa-solid fa-star")
+        }else if(status === "fa-solid fa-star"){
+            localStorage.removeItem(`${name}`)
+            $(this).children().attr("class", "fa-regular fa-star")
+        }
+
+    })
     // <i className = "fa-solid fa-star" >< /i>
 
 }
@@ -202,10 +217,6 @@ $(".regionBtn").click(function(){
             break;
         }
     }
-})
-
-$("#details").click(function() {
-    console.log("hi")
 })
 
 

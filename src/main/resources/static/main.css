@@ -12,6 +12,10 @@
     background: silver;
 }
 
+a{
+    color: whitesmoke;
+}
+
 .card{
     height: 15em;
     width: 12em;

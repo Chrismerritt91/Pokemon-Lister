@@ -4,6 +4,7 @@ const species = "pokemon-species/"
 
 // targets the url parameters and gets the id number for the fetch request
 let queryString = window.location.href
+console.log(queryString)
 let url = new URL(queryString)
 let parameters = url.searchParams
 let pokemon = parameters.get("id")
@@ -166,3 +167,4 @@ export const speciesInfo = () => {
 
 pokeDetails()
 speciesInfo()
+

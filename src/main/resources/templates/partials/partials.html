@@ -23,10 +23,10 @@
                 </li>
             </ul>
         </div>
-        <form id="searchForm" action="" method="get">
+        <div>
             <input type="text" id="search" placeholder="Enter Pokemon">
             <button type="submit" id="searchBtn">Search</button>
-        </form>
+        </div>
 
     </div><!-- /.container-fluid -->
 </nav>
@@ -46,8 +46,11 @@
     <script src="/js/jquery-3.6.0.js"></script>
     <script>
         $("#searchBtn").click(function(){
-            let input = $("#search").val()
-            $("#searchForm").attr("action", "/details/?id=" + input)
+            let url = new URL("http://localhost:8080/details/?id=")
+            let input = $("#search").val().toLowerCase()
+            let newUrl = url + input
+            console.log(newUrl);
+            window.location = newUrl
         })
 
     </script>
