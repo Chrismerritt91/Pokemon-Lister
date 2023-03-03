@@ -127,26 +127,34 @@ const createPokemonCard = ({name, id, sprites, types}) => {
             let url = new URL("http://localhost:8080/details/?id=")
             let id = $(element).parent().parent().parent().attr("data-id")
             let newUrl = url + id
-            // $(element).attr("url",newUrl)
         $(this).click(function(){
             window.location = newUrl;
         })
     })
 
+    // function to favorite a pokemon and add its name and id to local storage
     $(".favBtn").click(function(){
         let status = $(this).children().attr("class")
-        let name =
-        console.log(name)
+        let name = $(this).parent().parent().children().first().text().toLowerCase()
+        let id = $(this).parent().children().first().next().text().slice(4)
         if(status === "fa-regular fa-star"){
-            localStorage.setItem(`${name}`, `${id}`)
+            localStorage.setItem(name, id)
             $(this).children().attr("class", "fa-solid fa-star")
         }else if(status === "fa-solid fa-star"){
-            localStorage.removeItem(`${name}`)
+            localStorage.removeItem(name)
             $(this).children().attr("class", "fa-regular fa-star")
         }
 
     })
-    // <i className = "fa-solid fa-star" >< /i>
+
+    $(".name").each(function(index,element){
+        let name = $(element).text().toLowerCase()
+        let id = $(element).next().children().first().next().text().slice(4)
+        if(localStorage.getItem(name) === id){
+            $(element).next().children().first().next().next().children().attr("class", "fa-solid fa-star")
+
+        }
+    })
 
 }
 
