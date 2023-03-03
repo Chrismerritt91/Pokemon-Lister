@@ -8,6 +8,14 @@
     display: none;
 }
 
+header{
+    height: 135px;
+    background-image: url("img/Pokemon-banner.jpg.optimal copy.jpg");
+    background-position: center;
+    border-top: 5px solid black;
+    border-bottom: 5px solid black;
+}
+
 .btn-group{
     background: silver;
 }

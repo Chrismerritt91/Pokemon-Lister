@@ -3,18 +3,21 @@
 <head th:replace="partials/partials.html :: head('Pokedex')"></head>
 <body id="indexBody" class="text-center">
 <nav th:replace="partials/partials.html :: nav"></nav>
-
-<!--This button group supports the function of filtering pokemon by the region that the user selects-->
-<div id="regionSelect" class="py-0 px-2 btn-group mt-4 rounded-pill border border-2 border-dark border-opacity-50">
-    <button type="button" class="regionBtn btn" value="kanto">Kanto</button>
-    <button type="button" class="regionBtn btn" value="johto">Johto</button>
-    <button type="button" class="regionBtn btn" value="hoenn">Hoenn</button>
-    <button type="button" class="regionBtn btn" value="sinnoh">Sinnoh</button>
-    <button type="button" class="regionBtn btn" value="unova">Unova</button>
-    <button type="button" class="regionBtn btn" value="kalos">Kalos</button>
-    <button type="button" class="regionBtn btn" value="alola">Alola</button>
-    <button type="button" class="regionBtn btn" value="galar">Galar</button>
-    <button type="button" class="regionBtn btn" value="paldea">Paldea</button>
+<header class="py-2"></header>
+<div id="regions" class="m-2">
+    <h4 class="subtitle m-2">Regions</h4>
+    <!--This button group supports the function of filtering pokemon by the region that the user selects-->
+    <div id="regionSelect" class="py-0 px-2 btn-group m-2 rounded-pill border border-2 border-dark border-opacity-50">
+        <button type="button" class="regionBtn btn" value="kanto">Kanto</button>
+        <button type="button" class="regionBtn btn" value="johto">Johto</button>
+        <button type="button" class="regionBtn btn" value="hoenn">Hoenn</button>
+        <button type="button" class="regionBtn btn" value="sinnoh">Sinnoh</button>
+        <button type="button" class="regionBtn btn" value="unova">Unova</button>
+        <button type="button" class="regionBtn btn" value="kalos">Kalos</button>
+        <button type="button" class="regionBtn btn" value="alola">Alola</button>
+        <button type="button" class="regionBtn btn" value="galar">Galar</button>
+        <button type="button" class="regionBtn btn" value="paldea">Paldea</button>
+    </div>
 </div>
 
 <div class="introduction">

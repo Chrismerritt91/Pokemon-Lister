@@ -147,6 +147,7 @@ const createPokemonCard = ({name, id, sprites, types}) => {
 
     })
 
+    // function to highlight favorites on page load
     $(".name").each(function(index,element){
         let name = $(element).text().toLowerCase()
         let id = $(element).next().children().first().next().text().slice(4)
@@ -178,6 +179,27 @@ const getPokemon = name => {
         .then((res) => res.json())
 }
 
+
+// targets the url parameters and gets the id number for the fetch request
+let queryString = window.location.href
+let url = new URL(queryString)
+let parameters = url.searchParams
+let fav = parameters.get("query")
+
+// this function displays only the favorite pokemon on the page
+$(function onlyFavorites(){
+    if(fav === "favorites") {
+        $(".introduction").addClass("hidden")
+        $("#regions").addClass("hidden")
+
+        for (let i = 0; i < localStorage.length; i++) {
+            let storedValue = localStorage.key(i);
+            getPokemon(storedValue).then((res) => {
+                createPokemonCard(res)
+            })
+        }
+    }
+})
 
 // this function is to sort the pokemon by regions
 $(".regionBtn").click(function(){
