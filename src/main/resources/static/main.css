@@ -42,6 +42,12 @@ a{
     background: silver;
 }
 
+.subarticle{
+    opacity: 75%;
+    transition: opacity .5s;
+}
+
+
 #details{
     background-image: url("img/poke_background copy.png") ;
     color: ghostwhite;
