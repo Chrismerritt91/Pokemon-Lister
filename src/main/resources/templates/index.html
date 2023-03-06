@@ -5,9 +5,9 @@
 <nav th:replace="partials/partials.html :: nav"></nav>
 <header class="py-2"></header>
 <div id="regions" class="m-2">
-    <h4 class="subtitle m-2">Regions</h4>
+    <h3 class="subtitle m-2">Regions</h3>
     <!--This button group supports the function of filtering pokemon by the region that the user selects-->
-    <div id="regionSelect" class="py-0 px-2 btn-group m-2 rounded-pill border border-2 border-dark border-opacity-50">
+    <div id="regionSelect" class="col-8 py-0 px-2 btn-group m-2 rounded-pill border border-2 border-dark border-opacity-50 d-inline-flex flex-wrap justify-content-center">
         <button type="button" class="regionBtn btn" value="kanto">Kanto</button>
         <button type="button" class="regionBtn btn" value="johto">Johto</button>
         <button type="button" class="regionBtn btn" value="hoenn">Hoenn</button>
@@ -26,16 +26,23 @@
         <p class="m-3 px-5"><span style="color: darkorange">Pokepedia</span> is a place where trainers of any region can find their favorite pokemon and maybe learn something new about them. By selecting a region above you will be given a list of the pokemon who origins come from that region. If you already have a pokemon in mind feel free to use the search bar and enter their name or number.Once you have made your selection you will be taken to their information page. If you  would like you can also star your favorite pokemon, and by clicking the favorites tab, you will be taken to a page of all of your favorites.
         </p>
         <div>
-            <h1 class="my-2">News</h1>
+            <h1 class="my-2"><span class="newsTitle">News</span></h1>
             <div id="news" class="p-3 d-flex flex-wrap">
-                <div class="article col-6">
-                    <img id="animatedImg" class="img-fluid" src="/img/new-animated-series-169.png" alt="Image is Unavailable">
+                <div class="article col-sm-12 col-md-6">
+                    <img id="animatedImg" class="container-fluid p-0" src="/img/new-animated-series-169.png" alt="Image is Unavailable">
                     <div class="subarticle pt-2 pb-3" style="background-color: #FF90C5;">
                         <h4 class="text-light text-start ps-2">A New Adventure Begins Soon</h4>
                         <p class="text-start ps-2">Liko and Roy are about to begin their journey.</p>
                     </div>
                 </div>
-                <p class="col-12 my-2">These Links And Others Are Found At <a style="color: rebeccapurple" href="https://www.pokemon.com/us">Pokemon.com</a></p>
+                <div class="article col-sm-12 col-md-6">
+                    <img id="cardsImg" class="container-fluid p-0" src="/img/pokemon-cards%20copy.png" alt="Image is Unavailable">
+                    <div class="subarticle pt-2 pb-3" style="background-color: gold">
+                        <h4 class="text-light text-start ps-2">Pokemon TCG: Scarlet & Violet</h4>
+                        <p class="text-start ps-2">The newest addition is set to release on the 31st of March</p>
+                    </div>
+                </div>
+                <p class="col-12 my-4">These Links And Others Are Found At <a style="color: rebeccapurple" href="https://www.pokemon.com/us">Pokemon.com</a></p>
             </div>
         </div>
     </div>
@@ -48,9 +55,14 @@
 <script src="/js/main.js" type="module"></script>
 <script>
 
-    // redirect to pokemon.com for video
+    // redirect to pokemon.com for animated show video
     $("#animatedImg").click(function () {
         window.location = "https://www.pokemon.com/us/pokemon-news/watch-the-trailer-for-the-new-pokemon-animated-series"
+    })
+
+    // redirect for tcg info
+    $("#cardsImg").click(function () {
+        window.location = "https://www.pokemon.com/us/pokemon-tcg/scarlet-violet/explore-and-watch/"
     })
 
 // transition opacity on news articles

@@ -47,6 +47,9 @@ a{
     transition: opacity .5s;
 }
 
+.newsTitle{
+    border-bottom: 5px solid rebeccapurple;
+}
 
 #details{
     background-image: url("img/poke_background copy.png") ;
