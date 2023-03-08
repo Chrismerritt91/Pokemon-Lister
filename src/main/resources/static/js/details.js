@@ -42,6 +42,12 @@ const showDetails = (res) => {
                     <img class="detailImg border rounded border-1 border-dark m-1" src="${res.sprites.front_shiny}" alt="No Image Available">
                 </div>
             </div>
+            <div  >
+                <h4 class="title border rounded border-dark m-1 text-center">Abilities</h4>
+                <div class="section my-2 border rounded border-dark mx-1">
+                    <div id="abilities" class="p-2"></div>
+                </div>
+            </div>
         </div>
         `
 
@@ -76,6 +82,17 @@ const showDetails = (res) => {
         } catch (Exception) {
         }
 
+
+    })
+
+    $(function tryAbility() {
+        try {
+            for (let i = 0; i < `${res.abilities}`.length; i++) {
+                let name = `${res.abilities[i].ability.name}`
+                abilityInfo(name)
+            }
+            }catch(Exception){
+            }
 
     })
 
@@ -141,6 +158,32 @@ const speciesDetails = (res) => {
 
 }
 
+const abilityDetails = (res) => {
+    try {
+        if(`${res.effect_entries}` === ''){
+            document.getElementById("abilities").innerHTML +=
+                `<p class="ability">
+           <span class='fw-bold m-0 text-capitalize'>${res.name}</span>: Not Defined
+         </p>`
+        }else{
+            for(let i = 0; i < `${res.effect_entries}`.length; i++){
+                let lang = `${res.effect_entries[i].language.name}`
+                if(lang === "en"){
+                    document.getElementById("abilities").innerHTML +=
+                        `<p class="ability">
+           <span class='fw-bold m-0 text-capitalize'>${res.name}</span>: ${res.effect_entries[i].effect}
+         </p>`
+                }
+            }
+        }
+
+    }catch (Exception) {
+    }
+
+}
+
+
+
 // fetch request for details page
 export const pokeDetails = () => {
     fetch(POKE_APP_API + "pokemon/" + pokemon)
@@ -161,6 +204,15 @@ export const speciesInfo = () => {
             console.log(res)
             $("#speciesDetails").html("")
             speciesDetails(res)
+        })
+}
+
+export const abilityInfo = (name) => {
+    fetch(POKE_APP_API + "ability/" + name)
+        .then((res) => res.json())
+        .then((res) => {
+            console.log(res)
+            abilityDetails(res)
         })
 }
 
